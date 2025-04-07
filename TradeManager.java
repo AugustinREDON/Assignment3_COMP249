@@ -62,7 +62,7 @@ public class TradeManager{
                                 InitialPrice *= 1.09;
                             break;
                     }
-                    Products.add(new Product(ProductName, country, category, InitialPrice));
+                    Products.add(new Product(ProductName, country, category, Math.round(InitialPrice * 100)/100));
 
 
 
@@ -80,7 +80,10 @@ public class TradeManager{
 
         }
         Products.sort(null);
-        System.out.println(Products.toString());
+        for(int i = 0; i < Products.size(); i++){
+            bw.write(Products.get(i).toString() + "\n");
+            System.out.println(Products.get(i).toString());
+        }
         bw.close();
         br.close();
 

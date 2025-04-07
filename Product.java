@@ -26,8 +26,7 @@ public class Product implements Comparable<Product> {
         return this.productName.compareToIgnoreCase(other.productName);
     }
     public String toString() {
-        return "Product{name='" + productName + "', country='" + Country +
-                "', category='" + Category + "', price=" + price + "}";
+        return this.productName + "," + this.Country + "," + this.Category + "," + this.price;
     }
     
     
