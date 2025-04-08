@@ -88,6 +88,10 @@ public class TradeManager{
         br.close();
 
 
+        //Part 2
+
+
+
 
     }
 

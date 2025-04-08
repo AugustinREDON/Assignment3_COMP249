@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class TariffList implements TariffPolicy{
     private TariffNode head;
     private int size;
@@ -12,6 +14,79 @@ public class TariffList implements TariffPolicy{
         if(Tl.head == null)
             this.head = Tl.head;
         this.size = Tl.size;
+    }
+    public void addToStart(Tariff tariff)
+    {
+        head = new TariffNode(tariff,head);
+        size++;
+    }
+    public void insertAtIndex(Tariff tariff, int index){
+        //checks right index
+        if(index < 0 || index > size)
+            throw new NoSuchElementException("Invalid Index");
+        //if index is at the start call add to start method
+        if(index == 0){
+            addToStart(tariff);
+            return;
+        }
+        //Start from the beginning of the list
+        TariffNode current = head;
+        //Goes through until the before index value
+        for(int i = 0; i < index -1; i++){
+            //moves current one step forward in the list
+            current = current.next;
+        }
+        TariffNode newNode = new TariffNode(tariff,current.getNext());
+        current.next = newNode;
+        size++;
+
+
+    }
+    public void deleteFromStart(Tariff tariff){
+        if(head == null) {
+            System.out.println("Empty List");
+            return;
+        }
+        head = head.next;
+        size--;
+
+    }
+    public void replaceAtIndex(Tariff tariff, int index){
+        if(index<0 || index > size)
+            return;
+        TariffNode current = head;
+        for(int i = 0; i < index -1; i++){
+            current = current.next;
+        }
+        current.setTariff(new Tariff(tariff));
+
+    }
+    public TariffNode find(String origin, String destination, String category){
+        TariffNode current = head;
+        int iteration = 0;
+        while(current != null){
+            iteration++;
+            Tariff t = current.getTariff();
+            if(t.getOriginCountry().equals(origin) && t.getDestinationCountry().equals(destination) && t.getProductCategory().equals(category)) {
+                System.out.println("It was found after "  + iteration + " iterations");
+                return current;
+            }
+            current = current.getNext();
+        }
+        System.out.println("It was not found adter " + iteration + " iterations");
+        return null;
+    }
+    public boolean contains(String origin, String destination, String category)
+    {
+        TariffNode current = head;
+        while(current != null){
+            Tariff t = current.getTariff();
+            if(t.getOriginCountry().equals(origin) && t.getDestinationCountry().equals(destination) && t.getProductCategory().equals(category)) {
+                return true;
+            }
+            current = current.getNext();
+        }
+         return false;
     }
     @Override
     public String evaluateTrade(double proposedTariff, double minimumTariff) {
