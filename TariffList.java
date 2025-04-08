@@ -30,14 +30,14 @@ public class TariffList implements TariffPolicy{
             return;
         }
         //Start from the beginning of the list
-        TariffNode current = head;
+        TariffNode position = head;
         //Goes through until the before index value
         for(int i = 0; i < index -1; i++){
-            //moves current one step forward in the list
-            current = current.next;
+            //moves position one step forward in the list
+            position = position.next;
         }
-        TariffNode newNode = new TariffNode(tariff,current.getNext());
-        current.next = newNode;
+        TariffNode newNode = new TariffNode(tariff,position.getNext());
+        position.next = newNode;
         size++;
 
 
@@ -54,37 +54,37 @@ public class TariffList implements TariffPolicy{
     public void replaceAtIndex(Tariff tariff, int index){
         if(index<0 || index > size)
             return;
-        TariffNode current = head;
+        TariffNode position = head;
         for(int i = 0; i < index -1; i++){
-            current = current.next;
+            position = position.next;
         }
-        current.setTariff(new Tariff(tariff));
+        position.setTariff(new Tariff(tariff));
 
     }
     public TariffNode find(String origin, String destination, String category){
-        TariffNode current = head;
+        TariffNode position = head;
         int iteration = 0;
-        while(current != null){
+        while(position != null){
             iteration++;
-            Tariff t = current.getTariff();
+            Tariff t = position.getTariff();
             if(t.getOriginCountry().equals(origin) && t.getDestinationCountry().equals(destination) && t.getProductCategory().equals(category)) {
                 System.out.println("It was found after "  + iteration + " iterations");
-                return current;
+                return position;
             }
-            current = current.getNext();
+            position = position.getNext();
         }
         System.out.println("It was not found adter " + iteration + " iterations");
         return null;
     }
     public boolean contains(String origin, String destination, String category)
     {
-        TariffNode current = head;
-        while(current != null){
-            Tariff t = current.getTariff();
+        TariffNode position = head;
+        while(position != null){
+            Tariff t = position.getTariff();
             if(t.getOriginCountry().equals(origin) && t.getDestinationCountry().equals(destination) && t.getProductCategory().equals(category)) {
                 return true;
             }
-            current = current.getNext();
+            position = position.getNext();
         }
          return false;
     }
