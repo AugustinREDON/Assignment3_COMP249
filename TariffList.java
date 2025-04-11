@@ -61,6 +61,21 @@ public class TariffList implements TariffPolicy{
         position.setTariff(new Tariff(tariff));
 
     }
+    public boolean equals(TariffList Tl){
+        TariffNode position = head;
+        TariffNode position2 = Tl.head;
+        while(position != null && position2 != null){
+            if(!position.equals(position2))
+            {
+                return false;
+            }
+            position = position.getNext();
+            position2 = position2.getNext();
+        }
+        return position == null && position2 == null;
+
+    }
+    
     public TariffNode find(String origin, String destination, String category){
         TariffNode position = head;
         int iteration = 0;
