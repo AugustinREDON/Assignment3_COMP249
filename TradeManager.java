@@ -1,4 +1,5 @@
 
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
@@ -44,15 +45,34 @@ public class TradeManager {
                 String ProductCategory = linescan.next();
                 int TradeValue = linescan.nextInt();
                 double ProposedTariff = linescan.nextDouble();
-                System.out.println(RequestId);
+                Tariff newTariff = new Tariff(DestinationCountry,OriginCountry,ProductCategory,ProposedTariff,TradeValue);
+                TariffRequests.add(newTariff);
+//                System.out.println(RequestId);
                 //Surcharge = Trade value * ((Minimum Tariff - ProposedTariff) / 100
-                try{
 
-                }
-                catch (Exception e) {
-                    System.out.println("You screwed up 2");
-                }
 
+            }
+            for(int i = 0 ; i < TariffRequests.size() ; i++)
+            {
+                
+                int num = i;
+                if(t1.contains(TariffRequests.get(i).getOriginCountry(),TariffRequests.get(i).getDestinationCountry(),TariffRequests.get(i).getProductCategory()))
+                {
+                   double minimumTariff =  t1.find(TariffRequests.get(i).getOriginCountry(),TariffRequests.get(i).getDestinationCountry(),TariffRequests.get(i).getProductCategory()).getTariff().getMinimumTariff();
+                   double proposedTariff = TariffRequests.get(num).getProposedTariff();
+                   String outcome = t1.evaluateTrade(proposedTariff,minimumTariff);
+                   if(outcome.equals("Accepted"))
+                    System.out.println(outcome);
+                   else if(outcome.equals("Rejected"))
+                       System.out.println(outcome);
+                   else
+                       System.out.println(outcome);
+                        System.out.println(TariffRequests.get(num).getValue() * (minimumTariff - proposedTariff)/100);
+                    // we want to then take the minimum tariff of that and the proposed tariff of the araylist and call the impemented method
+                }
+                else {
+//                    System.out.println("you fucked up");
+                }
             }
         }
         catch(Exception e){

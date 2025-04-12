@@ -6,11 +6,11 @@ public class Tariff {
     private double proposedTariff;
     private int value;
 
-    public Tariff(String destinationCountry, String originCountry, String productCategory, double minimumTariff, double proposedTariff, int value) {
+    public Tariff(String destinationCountry, String originCountry, String productCategory,double proposedTariff, int value) {
         this.destinationCountry = destinationCountry;
         this.originCountry = originCountry;
         this.productCategory = productCategory;
-        this.minimumTariff = minimumTariff;
+        this.minimumTariff = 0;
         this.proposedTariff = proposedTariff;
         this.value = value;
     }
@@ -47,6 +47,12 @@ public class Tariff {
     }
     public void setMinimumTariff(double minimumTariff) {
         this.minimumTariff = minimumTariff;
+    }
+    public double getProposedTariff() {
+        return proposedTariff;
+    }
+    public int getValue() {
+        return value;
     }
     public Tariff(Tariff tariff) {
         this.destinationCountry = tariff.getDestinationCountry();
