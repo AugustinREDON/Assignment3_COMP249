@@ -1,4 +1,4 @@
-import java.util.NoSuchElementException;
+ import java.util.NoSuchElementException;
 
 public class TariffList implements TariffPolicy{
     private TariffNode head;
@@ -88,7 +88,7 @@ public class TariffList implements TariffPolicy{
             }
             position = position.getNext();
         }
-        System.out.println("It was not found adter " + iteration + " iterations");
+        System.out.println("It was not found after " + iteration + " iterations");
         return null;
     }
     public boolean contains(String origin, String destination, String category)
