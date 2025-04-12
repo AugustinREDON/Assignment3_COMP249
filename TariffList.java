@@ -116,37 +116,57 @@ public class TariffList implements TariffPolicy{
         
 //        throw new UnsupportedOperationException("Unimplemented method 'evaluateTrade'");
     }
+
+    //Inner class node 
     public class TariffNode {
+
         private Tariff tariff;
         private TariffNode next;
+
+        //Default constructor
         public TariffNode() {
             this.tariff = null;
             this.next = null;
         }
+
+        //Parametrized constructor
         public TariffNode(Tariff tariff, TariffNode next) {
             this.tariff = tariff;
             this.next = next;
         }
+
+        //Copy constructor
         public TariffNode(TariffNode Tn){
             this.tariff = new Tariff(Tn.tariff);
             this.next = (Tn.next != null) ? Tn.next : null;
         }
+
         public TariffNode clone(){
             return new TariffNode(this);
         }
+
         //Work on this
         public boolean equals(TariffNode Tn){
-            return this.tariff.equals(Tn.tariff);
+            if(Tn == null){
+                return false; // return false if the other node is null
+            }
+            //Compares the tariff objects and recursively checks the next nodes
+            return this.tariff.equals(Tn.tariff) && ((this.next == null && Tn.next == null || (this.next != null && this.next.equals(Tn.next))));
         }
+
+        //Getters and setter for TariffNode
         public Tariff getTariff() {
             return this.tariff;
         }
+
         public TariffNode getNext() {
             return this.next;
         }
+
         public void setNext(TariffNode next) {
             this.next = next;
         }
+
         public void setTariff(Tariff tariff) {
             this.tariff = tariff;
         }
@@ -154,6 +174,4 @@ public class TariffList implements TariffPolicy{
 
     }
 
-    //inner class TariffNode
-    
 }
