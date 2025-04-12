@@ -82,7 +82,9 @@ public class TariffList implements TariffPolicy{
         while(position != null){
             iteration++;
             Tariff t = position.getTariff();
-            if(t.getOriginCountry().equals(origin) && t.getDestinationCountry().equals(destination) && t.getProductCategory().equals(category)) {
+            if(t.getOriginCountry().trim().equalsIgnoreCase(origin.trim()) && 
+            t.getDestinationCountry().trim().toLowerCase().equalsIgnoreCase(destination.trim()) 
+            && t.getProductCategory().trim().toLowerCase().equalsIgnoreCase(category.trim())) {
                 System.out.println("It was found after "  + iteration + " iterations");
                 return position;
             }
@@ -91,12 +93,16 @@ public class TariffList implements TariffPolicy{
         System.out.println("It was not found after " + iteration + " iterations");
         return null;
     }
+
+
     public boolean contains(String origin, String destination, String category)
     {
         TariffNode position = head;
         while(position != null){
             Tariff t = position.getTariff();
-            if(t.getOriginCountry().equals(origin) && t.getDestinationCountry().equals(destination) && t.getProductCategory().equals(category)) {
+            if(t.getOriginCountry().trim().equalsIgnoreCase(origin.trim()) && 
+            t.getDestinationCountry().trim().equalsIgnoreCase(destination.trim()) && 
+            t.getProductCategory().trim().equalsIgnoreCase(category.trim())) {
                 return true;
             }
             position = position.getNext();

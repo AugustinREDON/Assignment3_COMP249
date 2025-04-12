@@ -14,7 +14,7 @@ public class TradeManager {
         try {
             Scanner sc = new Scanner(br);
             Scanner sc2 = new Scanner(br2);
-//            String filepath = "TradeData.txt";
+            //String filepath = "TradeData.txt";
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 try {
@@ -58,5 +58,45 @@ public class TradeManager {
         catch(Exception e){
             System.out.println(e.getMessage());
         }
+
+        
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n ----- Tariff Lookup -----");
+
+
+        while(true){
+            System.out.println("Enter country of origin (or type 'exit' to quit):");
+            String originInput = scanner.next();
+            originInput = originInput.trim().toLowerCase();
+            if(originInput.equalsIgnoreCase("exit")) break ;
+
+            System.out.println("Enter destination");
+            String destinationInput = scanner.next();
+            destinationInput = destinationInput.trim().toLowerCase();
+            System.out.println("Enter category");
+            String categoryInput = scanner.next();
+            categoryInput = categoryInput.trim().toLowerCase();
+
+            TariffList.TariffNode result = t1.find(originInput, destinationInput, categoryInput);
+            if(result != null){
+                System.out.println("Tariff found: " + result.getTariff());
+            } else {
+                System.out.println(" No tariff not found for that combination");
+            }
+   
+        }
+
+        System.out.println("Exited search while loop");
+
+
+
+
+
+
+
+
+
+
+        scanner.close();
     }
 }
