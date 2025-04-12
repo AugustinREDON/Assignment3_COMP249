@@ -109,7 +109,7 @@ public class TariffList implements TariffPolicy{
             return "Accepeted";
         else if(proposedTariff >= minimumTariff + minimumTariff * 0.20)
             return "Accepted Conditionally";
-        //Surcharge = Trade value * ((Minimum Tariff - ProposedTariff) / 100
+
         else
             return "Rejected";
 

@@ -3,12 +3,25 @@ public class Tariff {
     private String originCountry;
     private String productCategory;
     private double minimumTariff;
+    private double proposedTariff;
+    private int value;
+
+    public Tariff(String destinationCountry, String originCountry, String productCategory, double minimumTariff, double proposedTariff, int value) {
+        this.destinationCountry = destinationCountry;
+        this.originCountry = originCountry;
+        this.productCategory = productCategory;
+        this.minimumTariff = minimumTariff;
+        this.proposedTariff = proposedTariff;
+        this.value = value;
+    }
 
     public Tariff(String destinationCountry, String originCountry, String productCategory, double minimumTariff) {
         this.destinationCountry = destinationCountry;
         this.originCountry = originCountry;
         this.productCategory = productCategory;
         this.minimumTariff = minimumTariff;
+        this.proposedTariff = 0;
+        this.value = 0;
 
     }
     public String getDestinationCountry() {

@@ -45,7 +45,7 @@ public class TradeManager {
                 int TradeValue = linescan.nextInt();
                 double ProposedTariff = linescan.nextDouble();
                 System.out.println(RequestId);
-
+                //Surcharge = Trade value * ((Minimum Tariff - ProposedTariff) / 100
                 try{
 
                 }
