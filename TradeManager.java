@@ -54,8 +54,7 @@ public class TradeManager {
             }
             for(int i = 0 ; i < TariffRequests.size() ; i++)
             {
-                
-                int num = i;
+               int num = i;
                 if(t1.contains(TariffRequests.get(i).getOriginCountry(),TariffRequests.get(i).getDestinationCountry(),TariffRequests.get(i).getProductCategory()))
                 {
                    double minimumTariff =  t1.find(TariffRequests.get(i).getOriginCountry(),TariffRequests.get(i).getDestinationCountry(),TariffRequests.get(i).getProductCategory()).getTariff().getMinimumTariff();
@@ -65,13 +64,14 @@ public class TradeManager {
                     System.out.println(outcome);
                    else if(outcome.equals("Rejected"))
                        System.out.println(outcome);
-                   else
+                   else {
                        System.out.println(outcome);
-                        System.out.println(TariffRequests.get(num).getValue() * (minimumTariff - proposedTariff)/100);
+                    System.out.println(TariffRequests.get(num).getValue() * (minimumTariff - proposedTariff) / 100);
+                   }
                     // we want to then take the minimum tariff of that and the proposed tariff of the araylist and call the impemented method
                 }
                 else {
-//                    System.out.println("you fucked up");
+                    System.out.println("This tariff does not exist ");
                 }
             }
         }

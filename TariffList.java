@@ -111,11 +111,11 @@ public class TariffList implements TariffPolicy{
     }
     @Override
     public String evaluateTrade(double proposedTariff, double minimumTariff) {
+        System.out.println(minimumTariff + proposedTariff * 0.20);
         if(proposedTariff >= minimumTariff)
             return "Accepeted";
-        else if(proposedTariff >= minimumTariff + minimumTariff * 0.20)
+        else if(proposedTariff >= (minimumTariff - minimumTariff * 0.20))
             return "Accepted Conditionally";
-
         else
             return "Rejected";
 
