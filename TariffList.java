@@ -105,8 +105,16 @@ public class TariffList implements TariffPolicy{
     }
     @Override
     public String evaluateTrade(double proposedTariff, double minimumTariff) {
+        if(proposedTariff >= minimumTariff)
+            return "Accepeted";
+        else if(proposedTariff >= minimumTariff + minimumTariff * 0.20)
+            return "Accepted Conditionally";
+        //Surcharge = Trade value * ((Minimum Tariff - ProposedTariff) / 100
+        else
+            return "Rejected";
+
         
-        throw new UnsupportedOperationException("Unimplemented method 'evaluateTrade'");
+//        throw new UnsupportedOperationException("Unimplemented method 'evaluateTrade'");
     }
     public class TariffNode {
         private Tariff tariff;
