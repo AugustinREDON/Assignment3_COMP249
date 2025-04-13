@@ -89,6 +89,8 @@ public class TradeManager {
 
                 } else {
                     System.out.println(req.getReqID() + " - No matching tariff rule found.\n");
+                    //REQ003 will not be a rule because origin and destination dont match in Tarrifs.txt and TradeRequests.txt
+
                 }
             }
 
@@ -99,7 +101,7 @@ public class TradeManager {
 
         /* 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n ----- Tariff Lookup -----");
+        System.out.println("\n ----- Tariff Lookup ----- \n");
 
 
         while(true){
@@ -127,7 +129,7 @@ public class TradeManager {
         
 
 
-        System.out.println("\n Manual Testing of all classes & methods");
+        System.out.println("\n ---- Manual Testing of all classes & methods ---- \n");
 
         Tariff t1 = new Tariff("France", "UK", "Wine", 10.0);
         System.out.println("Tarrif 1: " + t1);
@@ -141,7 +143,7 @@ public class TradeManager {
         System.out.println("\n Cloned Tariff of Tarrif 1: " + t3);
 
         //equals method
-        System.out.println("t1 = t1Copy? " + t1.equals(t1Copy));
+        System.out.println("t1 = t1Copy? \n" + t1.equals(t1Copy));
 
         //Creating tariffList
         TariffList list = new TariffList();
@@ -178,7 +180,7 @@ public class TradeManager {
 
         //List equals
         TariffList listCopy = new TariffList(list);
-        System.out.println("\n List equals method: " + list.equals(listCopy));
+        System.out.println("\n List equals method: /n" + list.equals(listCopy));
 
 
 
