@@ -1,13 +1,16 @@
 
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+
+
 import java.io.*;
 public class TradeManager {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        TariffList t1 = new TariffList();
-        TariffList t2 = new TariffList();
+        TariffList tList1 = new TariffList();
+        TariffList tList2 = new TariffList();
         ArrayList<Tariff> TariffRequests = new ArrayList<Tariff>();
         BufferedReader br = new BufferedReader(new FileReader("Tariffs.txt"));
         BufferedReader br2 = new BufferedReader(new FileReader("TradeRequests.txt"));
@@ -25,8 +28,8 @@ public class TradeManager {
                     String category = linescan.next();
                     double minimumTariff = linescan.nextDouble();
                     Tariff newT = new Tariff(destincationCountry,originCountry,category,minimumTariff);
-                    if(!t1.contains(originCountry,destincationCountry,category))
-                        t1.addToStart(newT);
+                    if(!tList1.contains(originCountry,destincationCountry,category))
+                        tList1.addToStart(newT);
                     else
                         System.out.println("Tariff already exists");
                 }
@@ -52,14 +55,12 @@ public class TradeManager {
 
 
             }
-            for(int i = 0 ; i < TariffRequests.size() ; i++)
-            {
-               int num = i;
-                if(t1.contains(TariffRequests.get(i).getOriginCountry(),TariffRequests.get(i).getDestinationCountry(),TariffRequests.get(i).getProductCategory()))
-                {
-                   double minimumTariff =  t1.find(TariffRequests.get(i).getOriginCountry(),TariffRequests.get(i).getDestinationCountry(),TariffRequests.get(i).getProductCategory()).getTariff().getMinimumTariff();
+            for(int i = 0 ; i < TariffRequests.size() ; i++){
+                int num = i;
+                if(tList1.contains(TariffRequests.get(i).getOriginCountry(),TariffRequests.get(i).getDestinationCountry(),TariffRequests.get(i).getProductCategory())){
+                   double minimumTariff =  tList1.find(TariffRequests.get(i).getOriginCountry(),TariffRequests.get(i).getDestinationCountry(),TariffRequests.get(i).getProductCategory()).getTariff().getMinimumTariff();
                    double proposedTariff = TariffRequests.get(num).getProposedTariff();
-                   String outcome = t1.evaluateTrade(proposedTariff,minimumTariff);
+                   String outcome = tList1.evaluateTrade(proposedTariff,minimumTariff);
                    if(outcome.equals("Accepted"))
                     System.out.println(outcome);
                    else if(outcome.equals("Rejected"))
@@ -69,9 +70,8 @@ public class TradeManager {
                     System.out.println(TariffRequests.get(num).getValue() * (minimumTariff - proposedTariff) / 100);
                    }
                     // we want to then take the minimum tariff of that and the proposed tariff of the araylist and call the impemented method
-                }
-                else {
-                    System.out.println("This tariff does not exist ");
+                } else {
+                    //System.out.println("you fucked up");
                 }
             }
         }
@@ -79,7 +79,7 @@ public class TradeManager {
             System.out.println(e.getMessage());
         }
 
-        
+        /* 
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n ----- Tariff Lookup -----");
 
@@ -105,18 +105,53 @@ public class TradeManager {
             }
    
         }
-
-        System.out.println("Exited search while loop");
-
-
+        */
+        
 
 
+        System.out.println("Manual Testing of all classes & methods");
+
+        Tariff t1 = new Tariff("France", "UK", "Wine", 10.0);
+        System.out.println("Tarrif 1: " + t1);
+
+        //Copy constructor
+        Tariff t1Copy = new Tariff(t1);
+        System.out.println("Tarrif 1 Copy: " + t1Copy);
+
+        // Clone method
+        Tariff t3 = t1.clone();
+        System.out.println("Cloned Tariff of Tarrif 1: " + t3);
+
+        //equals method
+        System.out.println("t1 = t1Copy? " + t1.equals(t1Copy));
+
+        //Creating tariffList
+        TariffList list = new TariffList();
+        list.addToStart(t1);
+        list.addToStart(new Tariff("India", "China", "Textile", 30));   
+        System.out.println("List after adding to start: ");
+        list.displayList();
+
+        //Insert at index
+        list.insertAtIndex(new Tariff("Brazil", "Canada","Beans", 5), 1);
+        System.out.println("List after adding at index: ");
+        list.displayList();
+
+        //Delete from index
+        
+
+        //Delete from start
+
+        //Delete from invalid index (Should throw exception)
+
+        //Replace at index
+
+        //Contains
+
+        //List equals
 
 
 
-
-
-
-        scanner.close();
+        //scanner.close();
     }
 }

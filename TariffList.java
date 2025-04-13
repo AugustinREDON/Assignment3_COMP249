@@ -8,40 +8,45 @@ public class TariffList implements TariffPolicy{
         head = null;
         size = 0;
     }
-    public TariffList(TariffList Tl)
-    {
+
+    public TariffList(TariffList Tl) {
         //Tweak this mabye incase head is not null
         if(Tl.head == null)
             this.head = Tl.head;
         this.size = Tl.size;
-    }
-    public void addToStart(Tariff tariff)
-    {
+    }  
+
+    public void addToStart(Tariff tariff){
         head = new TariffNode(tariff,head);
         size++;
     }
+
     public void insertAtIndex(Tariff tariff, int index){
         //checks right index
         if(index < 0 || index > size)
             throw new NoSuchElementException("Invalid Index");
+
         //if index is at the start call add to start method
         if(index == 0){
             addToStart(tariff);
             return;
         }
+
         //Start from the beginning of the list
         TariffNode position = head;
+
         //Goes through until the before index value
         for(int i = 0; i < index -1; i++){
             //moves position one step forward in the list
             position = position.next;
         }
+
         TariffNode newNode = new TariffNode(tariff,position.getNext());
         position.next = newNode;
         size++;
 
-
     }
+
     public void deleteFromStart(Tariff tariff){
         if(head == null) {
             System.out.println("Empty List");
@@ -51,6 +56,7 @@ public class TariffList implements TariffPolicy{
         size--;
 
     }
+
     public void replaceAtIndex(Tariff tariff, int index){
         if(index<0 || index > size)
             return;
@@ -61,6 +67,7 @@ public class TariffList implements TariffPolicy{
         position.setTariff(new Tariff(tariff));
 
     }
+
     public boolean equals(TariffList Tl){
         TariffNode position = head;
         TariffNode position2 = Tl.head;
@@ -95,8 +102,7 @@ public class TariffList implements TariffPolicy{
     }
 
 
-    public boolean contains(String origin, String destination, String category)
-    {
+    public boolean contains(String origin, String destination, String category){
         TariffNode position = head;
         while(position != null){
             Tariff t = position.getTariff();
@@ -109,6 +115,7 @@ public class TariffList implements TariffPolicy{
         }
          return false;
     }
+
     @Override
     public String evaluateTrade(double proposedTariff, double minimumTariff) {
         System.out.println(minimumTariff + proposedTariff * 0.20);
@@ -118,9 +125,26 @@ public class TariffList implements TariffPolicy{
             return "Accepted Conditionally";
         else
             return "Rejected";
+    }
+
+    public void displayList(){
+
 
         
-//        throw new UnsupportedOperationException("Unimplemented method 'evaluateTrade'");
+        //check if list is empty
+        if(head == null){
+            System.out.println("List is empty");
+        }
+
+        TariffNode current = head;
+        int index = 0;
+
+        while(current != null){
+            System.out.println("[" + index + "]" + current.getTariff());
+            current = current.next;
+        }
+        
+
     }
 
     //Inner class node 
