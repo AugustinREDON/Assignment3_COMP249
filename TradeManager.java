@@ -140,6 +140,9 @@ public class TradeManager {
 
         //Delete from index
         //Need to add this method 
+        list.deleteAtIndex(4);
+        System.out.println("\n List after deleting at index: ");
+        list.displayList();
 
         //Delete from start
         list.deleteFromStart();

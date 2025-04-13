@@ -57,6 +57,25 @@ public class TariffList implements TariffPolicy{
 
     }
 
+    public void deleteAtIndex(int index){
+        if(index < 0 || index >= size){
+            throw new NoSuchElementException("Invalid Index");
+        }
+
+        if(index == 0){
+            deleteFromStart();
+            return;
+        }
+
+        TariffNode current = head;
+        for(int i = 0; i < index-1; i++){
+            current = current.next;
+        }
+
+        current.next = current.next.next; 
+        size--;
+    }
+
     public void replaceAtIndex(Tariff tariff, int index){
         if(index<0 || index > size)
             return;
@@ -127,9 +146,9 @@ public class TariffList implements TariffPolicy{
         else
             return "Rejected";
     }
-
+    
+    //Displays the list
     public void displayList(){
-
         //check if list is empty
         if(head == null){
             System.out.println("List is empty");
