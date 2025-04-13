@@ -28,13 +28,19 @@ public class TradeManager {
                     String category = linescan.next();
                     double minimumTariff = linescan.nextDouble();
                     Tariff newT = new Tariff(destincationCountry,originCountry,category,minimumTariff);
-                    if(!tList1.contains(originCountry,destincationCountry,category))
+                    if(!tList1.contains(originCountry,destincationCountry,category)){
                         tList1.addToStart(newT);
-                    else
+                        linescan.close();
+                    } else {
                         System.out.println("Tariff already exists");
+                        linescan.close();
+                    }
                 }
                 catch (Exception e) {
                     System.out.println("You screwed up 1");
+                } finally {
+                    sc.close();
+             
                 }
             }
 
@@ -50,11 +56,14 @@ public class TradeManager {
                 double ProposedTariff = linescan.nextDouble();
                 Tariff newTariff = new Tariff(DestinationCountry,OriginCountry,ProductCategory,ProposedTariff,TradeValue);
                 TariffRequests.add(newTariff);
-//                System.out.println(RequestId);
+                //System.out.println(RequestId);
                 //Surcharge = Trade value * ((Minimum Tariff - ProposedTariff) / 100
 
+                sc2.close();
+                linescan.close();
 
             }
+
             for(int i = 0 ; i < TariffRequests.size() ; i++){
                 int num = i;
                 if(tList1.contains(TariffRequests.get(i).getOriginCountry(),TariffRequests.get(i).getDestinationCountry(),TariffRequests.get(i).getProductCategory())){
@@ -71,13 +80,13 @@ public class TradeManager {
                    }
                     // we want to then take the minimum tariff of that and the proposed tariff of the araylist and call the impemented method
                 } else {
-                    //System.out.println("you fucked up");
+                    System.out.println("you fucked up");
                 }
             }
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-        }
+        } 
 
         /* 
         Scanner scanner = new Scanner(System.in);
@@ -109,7 +118,7 @@ public class TradeManager {
         
 
 
-        System.out.println("Manual Testing of all classes & methods");
+        System.out.println("\n Manual Testing of all classes & methods");
 
         Tariff t1 = new Tariff("France", "UK", "Wine", 10.0);
         System.out.println("Tarrif 1: " + t1);
@@ -139,8 +148,7 @@ public class TradeManager {
         list.displayList();
 
         //Delete from index
-        //Need to add this method 
-        list.deleteAtIndex(4);
+        list.deleteAtIndex(2);
         System.out.println("\n List after deleting at index: ");
         list.displayList();
 
@@ -156,7 +164,8 @@ public class TradeManager {
         list.displayList();
 
         //Contains
-
+        System.out.println("\n List contains method");
+        System.out.println(list.contains("Canada", "Brazil", "Beans"));
 
         //List equals
         TariffList listCopy = new TariffList(list);
