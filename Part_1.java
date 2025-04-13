@@ -7,12 +7,12 @@ public class Part_1 {
         BufferedReader br = new BufferedReader(new FileReader("TradeData.txt"));
         BufferedWriter bw = new BufferedWriter(new FileWriter("UpdatedTradeData.txt"));
         ArrayList<Product> Products =  new ArrayList<Product>();
-        TariffList t1 = new TariffList();
-        TariffList t2 = new TariffList();
+        //TariffList t1 = new TariffList();
+        //TariffList t2 = new TariffList();
 
         try{
             Scanner sc = new Scanner(br);
-            String filepath = "TradeData.txt";
+            //String filepath = "TradeData.txt";
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
                 try{
@@ -69,28 +69,26 @@ public class Part_1 {
                     //We want to check which country
                     //Check which category it is
                     //Add the right tariff and add it to the updated file
+                    linescan.close();
                 }
                 catch(Exception e){
                     System.out.println(e);
                 }
 
             }
+            sc.close();
+        } catch(Exception e){
+            System.out.println(e.getMessage());
         }
-        catch(Exception e){
 
-        }
         Products.sort(null);
         for(int i = 0; i < Products.size(); i++){
             bw.write(Products.get(i).toString() + "\n");
             System.out.println(Products.get(i).toString());
         }
+
         bw.close();
         br.close();
-
-
-        //Part 2
-
-
 
 
     }
