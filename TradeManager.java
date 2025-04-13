@@ -141,11 +141,13 @@ public class TradeManager {
         
 
         //Delete from start
+      //  list.deleteFromStart(list);
 
-        //Delete from invalid index (Should throw exception)
 
         //Replace at index
 
+
+        
         //Contains
 
         //List equals
