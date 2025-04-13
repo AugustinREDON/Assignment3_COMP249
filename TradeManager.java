@@ -116,11 +116,11 @@ public class TradeManager {
 
         //Copy constructor
         Tariff t1Copy = new Tariff(t1);
-        System.out.println("Tarrif 1 Copy: " + t1Copy);
+        System.out.println("\n Tarrif 1 Copy: " + t1Copy);
 
         // Clone method
         Tariff t3 = t1.clone();
-        System.out.println("Cloned Tariff of Tarrif 1: " + t3);
+        System.out.println("\n Cloned Tariff of Tarrif 1: " + t3);
 
         //equals method
         System.out.println("t1 = t1Copy? " + t1.equals(t1Copy));
@@ -128,29 +128,36 @@ public class TradeManager {
         //Creating tariffList
         TariffList list = new TariffList();
         list.addToStart(t1);
+        list.addToStart(new Tariff("Canada", "Italy", "Syrup", 2));
         list.addToStart(new Tariff("India", "China", "Textile", 30));   
-        System.out.println("List after adding to start: ");
+        System.out.println("\n List after adding to start: ");
         list.displayList();
 
         //Insert at index
         list.insertAtIndex(new Tariff("Brazil", "Canada","Beans", 5), 1);
-        System.out.println("List after adding at index: ");
+        System.out.println("\n List after adding at index: ");
         list.displayList();
 
         //Delete from index
-        
+        //Need to add this method 
 
         //Delete from start
-      //  list.deleteFromStart(list);
+        list.deleteFromStart();
+        System.out.println("\n List after deleting from start");
+        list.displayList();
 
 
         //Replace at index
+        list.replaceAtIndex(new Tariff("Djibouti", "USA", "Microchips", 40), 2);
+        System.out.println("\n List after replacing at index");
+        list.displayList();
 
-
-        
         //Contains
 
+
         //List equals
+        TariffList listCopy = new TariffList(list);
+        System.out.println("\n List equals method: " + list.equals(listCopy));
 
 
 

@@ -47,7 +47,7 @@ public class TariffList implements TariffPolicy{
 
     }
 
-    public void deleteFromStart(Tariff tariff){
+    public void deleteFromStart (){
         if(head == null) {
             System.out.println("Empty List");
             return;
@@ -68,6 +68,7 @@ public class TariffList implements TariffPolicy{
 
     }
 
+    //Need to edit to make a deep copy
     public boolean equals(TariffList Tl){
         TariffNode position = head;
         TariffNode position2 = Tl.head;
@@ -129,8 +130,6 @@ public class TariffList implements TariffPolicy{
 
     public void displayList(){
 
-
-        
         //check if list is empty
         if(head == null){
             System.out.println("List is empty");
@@ -142,6 +141,7 @@ public class TariffList implements TariffPolicy{
         while(current != null){
             System.out.println("[" + index + "]" + current.getTariff());
             current = current.next;
+            index++;
         }
         
 
