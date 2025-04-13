@@ -38,11 +38,9 @@ public class TradeManager {
                 }
                 catch (Exception e) {
                     System.out.println("You screwed up 1");
-                } finally {
-                    sc.close();
-             
-                }
+                } 
             }
+            sc.close();
 
             while (sc2.hasNextLine()) {
                 String line2 = sc2.nextLine();
@@ -54,37 +52,48 @@ public class TradeManager {
                 String ProductCategory = linescan.next();
                 int TradeValue = linescan.nextInt();
                 double ProposedTariff = linescan.nextDouble();
-                Tariff newTariff = new Tariff(DestinationCountry,OriginCountry,ProductCategory,ProposedTariff,TradeValue);
+                Tariff newTariff = new Tariff(RequestId, DestinationCountry,OriginCountry,ProductCategory,ProposedTariff,TradeValue);
                 TariffRequests.add(newTariff);
                 //System.out.println(RequestId);
                 //Surcharge = Trade value * ((Minimum Tariff - ProposedTariff) / 100
-
-                sc2.close();
                 linescan.close();
-
             }
+            sc2.close();
 
-            for(int i = 0 ; i < TariffRequests.size() ; i++){
-                int num = i;
-                if(tList1.contains(TariffRequests.get(i).getOriginCountry(),TariffRequests.get(i).getDestinationCountry(),TariffRequests.get(i).getProductCategory())){
-                   double minimumTariff =  tList1.find(TariffRequests.get(i).getOriginCountry(),TariffRequests.get(i).getDestinationCountry(),TariffRequests.get(i).getProductCategory()).getTariff().getMinimumTariff();
-                   double proposedTariff = TariffRequests.get(num).getProposedTariff();
-                   String outcome = tList1.evaluateTrade(proposedTariff,minimumTariff);
-                   if(outcome.equals("Accepted"))
-                    System.out.println(outcome);
-                   else if(outcome.equals("Rejected"))
-                       System.out.println(outcome);
-                   else {
-                       System.out.println(outcome);
-                    System.out.println(TariffRequests.get(num).getValue() * (minimumTariff - proposedTariff) / 100);
-                   }
-                    // we want to then take the minimum tariff of that and the proposed tariff of the araylist and call the impemented method
+
+            System.out.println("\n---- Evaluating Trade Requests ----\n");
+
+            for (int i = 0; i < TariffRequests.size(); i++) {
+                Tariff req = TariffRequests.get(i); 
+
+                if (tList1.contains(req.getOriginCountry(), req.getDestinationCountry(), req.getProductCategory())) {
+
+                    double minimumTariff = tList1.find(req.getOriginCountry(), req.getDestinationCountry(), req.getProductCategory()).getTariff().getMinimumTariff();
+                    double proposedTariff = req.getProposedTariff();
+                    String outcome = tList1.evaluateTrade(proposedTariff, minimumTariff);
+
+                    System.out.print(req.getReqID() + " - ");
+
+                    if (outcome.equals("Accepted")) {
+                        System.out.println("Accepted.");
+                        System.out.printf("Proposed tariff %.2f%% meets or exceeds the minimum required tariff %.2f%%.\n\n", proposedTariff, minimumTariff);
+                    } else if (outcome.equals("Rejected")) {
+                        System.out.println("Rejected.");
+                        System.out.printf("Proposed tariff %.2f%% is more than 20%% below the required minimum tariff %.2f%%.\n\n", proposedTariff, minimumTariff);
+                    } else {
+                        System.out.println("Conditionally Accepted.");
+                        System.out.printf("Proposed tariff %.2f%% is within 20%% of the required minimum tariff %.2f%%.\n", proposedTariff, minimumTariff);
+                        double surcharge = req.getValue() * ((minimumTariff - proposedTariff) / 100.0);
+                        System.out.printf("A surcharge of $%.2f is applied.\n\n", surcharge);
+                    }
+
                 } else {
-                    System.out.println("you fucked up");
+                    System.out.println(req.getReqID() + " - No matching tariff rule found.\n");
                 }
             }
-        }
-        catch(Exception e){
+
+
+        } catch(Exception e){
             System.out.println(e.getMessage());
         } 
 

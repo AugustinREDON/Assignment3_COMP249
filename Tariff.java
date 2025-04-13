@@ -1,5 +1,6 @@
 public class Tariff {
 
+    private String reqID;
     private String destinationCountry;
     private String originCountry;
     private String productCategory;
@@ -7,7 +8,8 @@ public class Tariff {
     private double proposedTariff;
     private int value;
 
-    public Tariff(String destinationCountry, String originCountry, String productCategory,double proposedTariff, int value) {
+    public Tariff(String reqID, String destinationCountry, String originCountry, String productCategory,double proposedTariff, int value) {
+        this.reqID = reqID;
         this.destinationCountry = destinationCountry;
         this.originCountry = originCountry;
         this.productCategory = productCategory;
@@ -42,6 +44,18 @@ public class Tariff {
         return minimumTariff;
     }
 
+    public String getReqID(){
+        return reqID;
+    }
+
+    public double getProposedTariff() {
+        return proposedTariff;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
     public void setDestinationCountry(String destinationCountry) {
         this.destinationCountry = destinationCountry;
     }
@@ -58,13 +72,10 @@ public class Tariff {
         this.minimumTariff = minimumTariff;
     }
 
-    public double getProposedTariff() {
-        return proposedTariff;
+    public void setReqID(String reqID){
+        this.reqID = reqID;
     }
 
-    public int getValue() {
-        return value;
-    }
 
     public Tariff(Tariff tariff) {
         this.destinationCountry = tariff.getDestinationCountry();

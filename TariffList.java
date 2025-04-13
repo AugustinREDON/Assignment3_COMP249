@@ -142,7 +142,7 @@ public class TariffList implements TariffPolicy{
         if(proposedTariff >= minimumTariff)
             return "Accepeted";
         else if(proposedTariff >= (minimumTariff - minimumTariff * 0.20))
-            return "Accepted Conditionally";
+            return "Conditionally Accepted";
         else
             return "Rejected";
     }
