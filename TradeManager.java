@@ -99,7 +99,7 @@ public class TradeManager {
             System.out.println(e.getMessage());
         } 
 
-        /* 
+        
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n ----- Tariff Lookup ----- \n");
 
@@ -117,7 +117,7 @@ public class TradeManager {
             String categoryInput = scanner.next();
             categoryInput = categoryInput.trim().toLowerCase();
 
-            TariffList.TariffNode result = t1.find(originInput, destinationInput, categoryInput);
+            TariffList.TariffNode result = tList1.find(originInput, destinationInput, categoryInput);
             if(result != null){
                 System.out.println("Tariff found: " + result.getTariff());
             } else {
@@ -125,7 +125,7 @@ public class TradeManager {
             }
    
         }
-        */
+        
         
 
 
@@ -168,7 +168,6 @@ public class TradeManager {
         System.out.println("\n List after deleting from start");
         list.displayList();
 
-
         //Replace at index
         list.replaceAtIndex(new Tariff("Djibouti", "USA", "Microchips", 40), 2);
         System.out.println("\n List after replacing at index");
@@ -182,8 +181,18 @@ public class TradeManager {
         TariffList listCopy = new TariffList(list);
         System.out.println("\n List equals method: /n" + list.equals(listCopy));
 
+        //List clone 
+        tList2 = list.clone();
+        System.out.println("\n Creating tList2, close of list");
+        System.out.println("\n tList2 (clone)");
+        tList2.displayList();
+        System.out.println("\n list (original)");
+        list.displayList();
 
+        //equals
+        System.out.println("\n Comparing tList2 (clone) to list (original)");
+        System.out.println(list.equals(tList2));
 
-        //scanner.close();
+        scanner.close();
     }
 }
