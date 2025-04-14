@@ -9,11 +9,24 @@ public class TariffList implements TariffPolicy{
         size = 0;
     }
 
+    //Copy constructor - deep copy
     public TariffList(TariffList Tl) {
-        //Tweak this mabye incase head is not null
-        if(Tl.head == null)
+        if(Tl.head == null){
             this.head = Tl.head;
-        this.size = Tl.size;
+            this.size = Tl.size;
+        } else{
+            this.head = new TariffNode(Tl.head);
+            TariffNode currentNew = this.head;
+            TariffNode currentOld = Tl.head.next;
+
+            while(currentOld != null){
+                TariffNode newNode = new TariffNode(currentOld);
+                currentNew.next = newNode;
+                currentOld = currentOld.next;
+            }
+
+            this.size = Tl.size;
+        }
     }  
 
     public void addToStart(Tariff tariff){
@@ -87,20 +100,26 @@ public class TariffList implements TariffPolicy{
 
     }
 
-    //Need to edit to make a deep copy
+    public TariffList clone(){
+        return new TariffList(this);
+    }
+
     public boolean equals(TariffList Tl){
+        if(this == Tl) return true; //same reference 
+        if(Tl == null) return false; //null check
+        if (this.size != Tl.size) return false; //fast fail if sizes differ
+
         TariffNode position = head;
         TariffNode position2 = Tl.head;
+
         while(position != null && position2 != null){
-            if(!position.equals(position2))
-            {
+            if(!position.equals(position2)){
                 return false;
             }
             position = position.getNext();
             position2 = position2.getNext();
         }
         return position == null && position2 == null;
-
     }
     
     public TariffNode find(String origin, String destination, String category){
@@ -138,7 +157,6 @@ public class TariffList implements TariffPolicy{
 
     @Override
     public String evaluateTrade(double proposedTariff, double minimumTariff) {
-        //System.out.println(minimumTariff + proposedTariff * 0.20);
         if(proposedTariff >= minimumTariff)
             return "Accepted";
         else if(proposedTariff >= (minimumTariff - minimumTariff * 0.20))
@@ -194,7 +212,7 @@ public class TariffList implements TariffPolicy{
             return new TariffNode(this);
         }
 
-        //Work on this
+        
         public boolean equals(TariffNode Tn){
             if(Tn == null){
                 return false; // return false if the other node is null
