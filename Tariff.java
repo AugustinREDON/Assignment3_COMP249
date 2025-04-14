@@ -1,13 +1,20 @@
+// ---------------------------------------------------------------
+// Assignment 3
+// Question: Part 1 - Tariff Adjustment with ArrayList & File I/O
+// Written by: Augustin Redon 40240986 - Jacob Paterak 40268958
+// ---------------------------------------------------------------
+
+
 public class Tariff {
 
     // Instance variables representing the details of a tariff
-    private String reqID; // Request ID for the tariff
-    private String destinationCountry; // Destination country for the tariff
-    private String originCountry; // Origin country for the tariff
-    private String productCategory; // Product category for the tariff
-    private double minimumTariff; // Minimum tariff percentage
-    private double proposedTariff; // Proposed tariff percentage
-    private int value; // Trade value associated with the tariff
+    private String reqID; 
+    private String destinationCountry; 
+    private String originCountry; 
+    private String productCategory;
+    private double minimumTariff; 
+    private double proposedTariff;
+    private int value;
 
     // Constructor to initialize a Tariff object with all details
     public Tariff(String reqID, String destinationCountry, String originCountry, String productCategory, double proposedTariff, int value) {
@@ -15,7 +22,7 @@ public class Tariff {
         this.destinationCountry = destinationCountry;
         this.originCountry = originCountry;
         this.productCategory = productCategory;
-        this.minimumTariff = 0; // Default value for minimum tariff
+        this.minimumTariff = 0; 
         this.proposedTariff = proposedTariff;
         this.value = value;
     }
@@ -26,8 +33,8 @@ public class Tariff {
         this.originCountry = originCountry;
         this.productCategory = productCategory;
         this.minimumTariff = minimumTariff;
-        this.proposedTariff = 0; // Default value for proposed tariff
-        this.value = 0; // Default value for trade value
+        this.proposedTariff = 0; 
+        this.value = 0; 
     }
 
     // Getter for destinationCountry

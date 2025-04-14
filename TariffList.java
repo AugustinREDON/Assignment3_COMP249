@@ -1,3 +1,11 @@
+// ---------------------------------------------------------------
+// Assignment 3
+// Question: Part 2 - TariffList Class Implementation
+// Written by: Augustin Redon 40240986 - Jacob Paterak 40268958
+// ---------------------------------------------------------------
+
+
+
 import java.util.NoSuchElementException;
 
 // TariffList class implements TariffPolicy and represents a linked list of Tariff objects

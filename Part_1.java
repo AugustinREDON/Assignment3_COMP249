@@ -1,3 +1,9 @@
+// ---------------------------------------------------------------
+// Assignment 3
+// Question: Part 1 - Tariff Adjustment with ArrayList & File I/O
+// Written by: Augustin Redon 40240986 - Jacob Paterak 40268958
+// ---------------------------------------------------------------
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;

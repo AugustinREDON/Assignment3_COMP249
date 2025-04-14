@@ -1,9 +1,14 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+// ---------------------------------------------------------------
+// Assignment 3
+// Question: Part 2 - Tariff Management System
+// Written by: Augustin Redon 40240986 - Jacob Paterak 40268958
+// ---------------------------------------------------------------
 
+
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.io.*;
+
 public class TradeManager {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
